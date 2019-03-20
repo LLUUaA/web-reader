@@ -46,18 +46,18 @@ const RouteWithSubRoutes = (route) => (
 )
 
 const AppRouetr = () => (
-  // <Router>
-  //   {routes.map((route, i) => (
-  //     <RouteWithSubRoutes key={i} {...route} />
-  //   ))}
-  // </Router>
-
   <Router>
-    <Switch>
-      <Route path='' exact component={HomeRoute} />
-      <Route path='/login' component={LoginRoute} />
-      <Route component={NotFound} />
-    </Switch>
+    {routes.map((route, i) => (
+      <RouteWithSubRoutes key={i} {...route} />
+    ))}
   </Router>
+
+  // <Router>
+  //   <Switch>
+  //     <Route path='' exact component={HomeRoute} />
+  //     <Route path='/login' component={LoginRoute} />
+  //     <Route component={NotFound} />
+  //   </Switch>
+  // </Router>
 )
 export default AppRouetr;
