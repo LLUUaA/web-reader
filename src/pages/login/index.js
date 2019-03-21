@@ -1,13 +1,25 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { Route } from 'react-router-dom';
 
 class Login extends Component {
   constructor() {
     super();
-    console.log('home',arguments)
   }
   render() {
+    console.log('render',this.props)
     return (
-      <div>login page</div>
+      <div>
+        <p>login page</p>
+        {this.props.routes.map((route, i) => (
+          <Route
+            key={i}
+            path={route.path}
+            render={props => (
+              <route.component {...props} routes={route.routes} />
+            )}
+          />
+        ))}
+      </div>
     )
   }
 }

@@ -12,7 +12,8 @@ function NotFound() {
 
 const routes = [
   {
-    path: "",
+    path: "/",
+    exact: true,
     component: HomeRoute
   },
   {
@@ -21,23 +22,19 @@ const routes = [
     routes: [
       {
         path: "/login/child",
-        component: LoginRoute
+        component: NotFound
       }
     ]
   },
-  {
-    path: "other",
-    component: HomeRoute
-  },
 
-  {
-    path: '*',
-    component: NotFound
-  },
+  // {
+  //   component: NotFound
+  // },
 ];
 const RouteWithSubRoutes = (route) => (
   <Route
-    path={route.path ? route.path : ''}
+    path={route.path}
+    exact={route.exact}
     render={props => (
       // pass the sub-routes down to keep nesting
       <route.component {...props} routes={route.routes} />
