@@ -1,13 +1,21 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import './home.css'
+
+import AppBar from '../../component/AppBar';
+import BottomNavigation from '../../component/BottomNavigation';
+import BookCard from '../../component/BookCard';
 
 class Home extends Component {
-  constructor() {
-    super();
-    console.log('home',arguments)
-  }
   render() {
     return (
-      <div>home page</div>
+      <div>
+        <AppBar />
+        <article className="content">
+          {new Array(15).fill(1).map((item, i) =>
+            <BookCard key={i} />)}
+        </article>
+        <BottomNavigation />
+      </div>
     )
   }
 }
