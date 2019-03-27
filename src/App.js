@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
-
+import AppBar from './component/AppBar';
 import AppRouetr from './routes';
 
 class App extends Component {
@@ -11,8 +11,9 @@ class App extends Component {
     return (
       <div className="App">
         <header className="App-header">
-          <AppRouetr></AppRouetr>
+          <AppBar />
         </header>
+        <AppRouetr></AppRouetr>
       </div>
     );
   }

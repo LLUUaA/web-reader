@@ -1,6 +1,12 @@
+.home-container {
+  overflow: hidden;
+}
+
 .content {
   display: flex;
   flex-wrap: wrap;
+  height: calc(100vh - 64px);
+  overflow: auto;
 }
 
 .book-card {

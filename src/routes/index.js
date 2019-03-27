@@ -3,6 +3,8 @@ import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import HomeRoute from '../pages/home';
 import LoginRoute from '../pages/login';
+import Reader from '../pages/reader';
+import Details from '../pages/details';
 
 function NotFound() {
   return (
@@ -15,6 +17,14 @@ const routes = [
     path: "/",
     exact: true,
     component: HomeRoute
+  },
+  {
+    path: "/reader",
+    component: Reader
+  },
+  {
+    path: "/details",
+    component: Details
   },
   {
     path: "/login",
