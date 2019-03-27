@@ -14,11 +14,12 @@ import FavoriteIcon from '@material-ui/icons/Favorite';
 import ShareIcon from '@material-ui/icons/Share';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import MoreVertIcon from '@material-ui/icons/MoreVert';
+import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   card: {
     maxWidth: 300,
-    margin:'5px'
+    margin: '5px'
   },
   media: {
     height: 0,
@@ -64,17 +65,19 @@ class RecipeReviewCard extends React.Component {
           title="Shrimp and Chorizo Paella"
           subheader="September 14, 2016"
         />
-        <CardMedia
-          className={classes.media}
-          image='https://material-ui.com/static/images/cards/paella.jpg'
-          title="Paella dish"
-        />
-        <CardContent>
-          <Typography component="p">
-            This impressive paella is a perfect party dish and a fun meal to cook together with your
-            guests. Add 1 cup of frozen peas along with the mussels, if you like.
+        <Link to="/details">
+          <CardMedia
+            className={classes.media}
+            image='https://material-ui.com/static/images/cards/paella.jpg'
+            title="Paella dish"
+          />
+          <CardContent>
+            <Typography component="p">
+              This impressive paella is a perfect party dish and a fun meal to cook together with your
+              guests. Add 1 cup of frozen peas along with the mussels, if you like.
           </Typography>
-        </CardContent>
+          </CardContent>
+        </Link>
         <CardActions className={classes.actions} disableActionSpacing>
           <IconButton aria-label="Add to favorites">
             <FavoriteIcon />
