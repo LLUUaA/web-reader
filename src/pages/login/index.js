@@ -6,7 +6,6 @@ class Login extends Component {
     super();
   }
   render() {
-    console.log('render',this.props)
     return (
       <div>
         <p>login page</p>
