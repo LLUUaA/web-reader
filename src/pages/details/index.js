@@ -22,7 +22,6 @@ class Details extends Component {
             </div>
           </div>
         </div>
-
         <div>
           <Typography variant="h5" >查看章节</Typography>
           <List>
@@ -30,7 +29,7 @@ class Details extends Component {
               <div>
                 <ListItem>
                   <ListItemText
-                    primary="Single-line item"
+                    primary={item + "Single-line item"}
                     secondary="Secondary text"
                   />
                 </ListItem>
