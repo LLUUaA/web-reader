@@ -37,6 +37,7 @@ class Details extends Component {
               </div>
             )}
           </List>
+          
           <Button variant="" color="primary">查看更多章节</Button>
         </div>
       </div>
