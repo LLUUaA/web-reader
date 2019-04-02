@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import AppBar from './component/AppBar';
+import Drawer from './component/Drawer';
 import AppRouetr from './routes';
 
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
@@ -17,17 +18,29 @@ class App extends Component {
   constructor(props) {
     super();
   }
+
+  state = {
+    openStatus:null
+  }
+
   render() {
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <header className="App-header">
-            <AppBar />
+            <AppBar onClick={this.handleDrawer.bind(this)} />
+            <Drawer openStatus={this.state.openStatus} onClick={this.handleDrawer.bind(this)}/>
           </header>
           <AppRouetr></AppRouetr>
         </div>
       </MuiThemeProvider>
     );
+  }
+
+  handleDrawer(status) {
+    this.setState({
+      openStatus:status
+    })
   }
 }
 
