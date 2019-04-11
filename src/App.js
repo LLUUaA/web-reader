@@ -31,7 +31,9 @@ class App extends Component {
             <AppBar onClick={this.handleDrawer.bind(this)} />
             <Drawer openStatus={this.state.openStatus} onClick={this.handleDrawer.bind(this)}/>
           </header>
-          <AppRouetr></AppRouetr>
+          <section className="App-container">
+            <AppRouetr></AppRouetr>
+          </section>
         </div>
       </MuiThemeProvider>
     );

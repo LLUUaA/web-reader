@@ -1,0 +1,8 @@
+.App {
+  overflow: hidden;
+}
+
+.App-container {
+    height: calc(100vh - 56px);
+    overflow: auto;
+  }

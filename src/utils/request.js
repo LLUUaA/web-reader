@@ -1,7 +1,8 @@
 import { getSession } from './session';
-
+import config from '../config';
 const axios = require('axios');
-const baseUrl = 'http://localhost:3000/';
+
+const baseUrl = config.host;
 export default function (opt = {}) {
   return new Promise((resolve, reject) => {
     // opt.url = baseUrl + opt.url || '';

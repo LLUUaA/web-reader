@@ -16,10 +16,8 @@ const style = {
 class Login extends Component {
   constructor() {
     super();
-    console.log('history',history.createLocation('/home'));
   }
   
-
   render() {
     return (
       <div style={style.container}>
@@ -70,7 +68,7 @@ class Login extends Component {
       // window.location = '/home'
       this.props.history.push('/home');
     },err=>{
-      alert(err.data.msg)
+      alert(err && err.data && err.data.msg || '请求失败')
     })
   }
 }
