@@ -19,11 +19,15 @@ const routes = [
     component: HomeRoute
   },
   {
-    path: "/reader",
+    path: "/home",
+    component: HomeRoute
+  },
+  {
+    path: "/reader/:bookId/:chapterNum",
     component: Reader
   },
   {
-    path: "/details",
+    path: "/details/:id",
     component: Details
   },
   {

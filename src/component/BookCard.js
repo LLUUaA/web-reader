@@ -18,8 +18,8 @@ import { Link } from 'react-router-dom';
 
 const styles = theme => ({
   card: {
-    maxWidth: 300,
-    margin: '5px'
+    width:300,
+    margin: '5px 0'
   },
   media: {
     height: 0,
@@ -44,7 +44,13 @@ const styles = theme => ({
 });
 
 class RecipeReviewCard extends React.Component {
-  state = { expanded: false };
+  constructor(props) {
+    super();
+    this.state = { 
+      expanded: false,
+      ...props.book
+     };
+  }
 
   render() {
     const { classes } = this.props;
@@ -62,20 +68,16 @@ class RecipeReviewCard extends React.Component {
               <MoreVertIcon />
             </IconButton>
           }
-          title="Shrimp and Chorizo Paella"
-          subheader="September 14, 2016"
+          title={this.state.name}
         />
-        <Link to="/details">
+        <Link to={'/details/'+this.state.bookId}>
           <CardMedia
             className={classes.media}
-            image='https://material-ui.com/static/images/cards/paella.jpg'
-            title="Paella dish"
+            image= {this.state.coverImg || 'https://material-ui.com/static/images/cards/paella.jpg'}
+            title={this.state.name}
           />
           <CardContent>
-            <Typography component="p">
-              This impressive paella is a perfect party dish and a fun meal to cook together with your
-              guests. Add 1 cup of frozen peas along with the mussels, if you like.
-          </Typography>
+            <Typography component="p">{this.state.description || ' '}</Typography>
           </CardContent>
         </Link>
         <CardActions className={classes.actions} disableActionSpacing>

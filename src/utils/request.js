@@ -19,7 +19,7 @@ export default function (opt = {}) {
       resolve(res.data);
     }).catch(err => {
       if(err.response && err.response.status === 401) {
-        this.$router.push('/login')
+        window.location = '/login'
       }
       reject(err.response)
     })

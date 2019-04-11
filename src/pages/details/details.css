@@ -28,6 +28,7 @@
   left: 0;
 }
 
-.btn-area button {
+.btn-area button,
+.btn-area .btn {
   margin-right: 10px;
 }

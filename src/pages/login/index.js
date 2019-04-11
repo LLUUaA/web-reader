@@ -1,8 +1,8 @@
 import React, { Component } from 'react';
 import { TextField, Button } from '@material-ui/core';
 import { setSession } from '../../utils/session';
-import  * as loginSer from '../../service';
-
+import  { login as loginSer} from '../../service';
+import * as history from 'history';
 const style = {
   container: {
     maxWidth: '414px',
@@ -13,12 +13,10 @@ const style = {
   }
 }
 
-let account,password;
-
 class Login extends Component {
   constructor() {
     super();
-    console.log('LoginSer',loginSer);
+    console.log('history',history.createLocation('/home'));
   }
   
 
@@ -66,13 +64,11 @@ class Login extends Component {
 
   login() {
     const { account = '',password='' } = this.state;
-    loginSer.login(btoa(`${account}:${password}`))
+    loginSer(btoa(`${account}:${password}`))
     .then(res=>{
       setSession(res.session);
-      const location = {
-        pathname: '/somewhere',
-        state: { fromDashboard: true }
-      }
+      // window.location = '/home'
+      this.props.history.push('/home');
     },err=>{
       alert(err.data.msg)
     })

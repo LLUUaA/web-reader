@@ -1,24 +1,35 @@
 import React, { Component } from 'react';
 import { Button, List, ListItemText, ListItem, Typography, Divider } from '@material-ui/core';
-import { Link } from 'react-router-dom';
+import { getBook as getBookSer } from '../../service';
 
 import './details.css';
 
-const readerLink = (props)=><Link to="/reader" {...props} />
-
 class Details extends Component {
+  constructor(props) {
+
+    console.log(arguments)
+    super();
+    const { id: bookId } = props.match.params;
+    this.state = {
+      bookId
+    }
+
+    this.getBookDetails();
+  }
   render() {
+    const { bookInfo = {}, otherNum, result = {} } = this.state; 
+
     return (
       <div className="details-container">
         <div className="book-info">
           <div>
-            <img className="poster-img" src="https://material-ui.com/static/images/cards/paella.jpg" />
+            <img className="poster-img" src= {bookInfo.coverImg || 'https://material-ui.com/static/images/cards/paella.jpg'} />
           </div>
           <div className="right">
-            <p>《完美世界》<span>完结</span></p>
-            <p>一粒尘可填海，一根草斩尽日月星辰，弹指间天翻地覆。群雄并起，万族林立，诸圣争霸，乱天动地。问苍茫大地，谁主沉浮？！一个少年从大荒中走出，一切从这里开始……</p>
+            <p>{bookInfo.bookName}<span>{bookInfo.status || '未知'}</span></p>
+            <p>{bookInfo.bookIntro}</p>
             <div className="btn-area">
-              <Button variant="contained" color="primary" component={readerLink}>开始阅读</Button>
+              <Button variant="contained" color="primary" onClick={()=>this.readBook()}>开始阅读</Button>
               <Button variant="contained" color="primary">章节目录</Button>
               <Button variant="contained" color="primary">加入书架</Button>
               <Button variant="contained" color="primary" disabled >txt下载</Button>
@@ -28,24 +39,40 @@ class Details extends Component {
         <div>
           <Typography variant="h5" >查看章节</Typography>
           <List>
-            {[0, 1, 2].map(item =>
-              <div>
+            {(result.top || []).map(item =>
+              <div key={item.chapterNum} onClick={()=>this.readBook(item.chapterNum)}>
                 <ListItem>
                   <ListItemText
-                    primary={item + "Single-line item"}
-                    secondary="Secondary text"
+                    primary={item.chapterName}
+                    secondary={item.time}
                   />
                 </ListItem>
                 <Divider />
               </div>
             )}
           </List>
-          
-          <Button variant="" color="primary">查看更多章节</Button>
+          <Button color="primary">查看更多章节</Button>
         </div>
       </div>
     )
   }
+
+  readBook(chapterNum = 1) {
+    this.props.history.push(`/reader/${this.state.bookId}/${chapterNum}`);
+  }
+
+  async getBookDetails() {
+    try {
+      const res = await getBookSer(this.state.bookId);
+      this.setState({
+        ...res
+      })
+    } catch (error) {
+      
+    }
+
+  }
 }
 
+// export default withRouter(Details)
 export default Details

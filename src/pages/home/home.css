@@ -5,8 +5,8 @@
 .content {
   display: flex;
   flex-wrap: wrap;
-  height: calc(100vh - 64px);
   overflow: auto;
+  justify-content: space-evenly;
 }
 
 .book-card {
