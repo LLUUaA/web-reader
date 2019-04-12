@@ -3,7 +3,6 @@ import './App.css';
 import AppBar from './component/AppBar';
 import Drawer from './component/Drawer';
 import AppRouetr from './routes';
-
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core/styles';
 import { red, blue } from '@material-ui/core/colors';
 
@@ -12,24 +11,28 @@ const theme = createMuiTheme({
     primary: blue,
     secondary: red,
   },
+  typography: {
+    useNextVariants: true,
+  },
 });
 
 class App extends Component {
-  constructor(props) {
+  constructor() {
     super();
   }
 
   state = {
-    openStatus:null
+    openStatus: null
   }
 
   render() {
+    const { femaleMenu, maleMenu } = this.state;
     return (
       <MuiThemeProvider theme={theme}>
         <div className="App">
           <header className="App-header">
             <AppBar onClick={this.handleDrawer.bind(this)} />
-            <Drawer openStatus={this.state.openStatus} onClick={this.handleDrawer.bind(this)}/>
+            <Drawer openStatus={this.state.openStatus} onClick={this.handleDrawer.bind(this)} />
           </header>
           <section className="App-container">
             <AppRouetr></AppRouetr>
@@ -41,9 +44,10 @@ class App extends Component {
 
   handleDrawer(status) {
     this.setState({
-      openStatus:status
+      openStatus: status
     })
   }
+
 }
 
 export default App;

@@ -10,48 +10,70 @@ import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
 import InboxIcon from '@material-ui/icons/MoveToInbox';
 import MailIcon from '@material-ui/icons/Mail';
+import AccountBox from '@material-ui/icons/AccountBox'
 
-const styles = {
+
+const styles = theme => ({
   list: {
     width: 250,
   },
   fullList: {
     width: 'auto',
   },
-};
+  root: {
+    width: '100%',
+    maxWidth: 250,
+    backgroundColor: theme.palette.background.paper,
+  },
+  nested: {
+    paddingLeft: theme.spacing.unit * 4,
+  },
+});
+
 
 class SwipeableTemporaryDrawer extends React.Component {
 
-  constructor(props,state) {
+  constructor(props, state) {
     super(props);
   }
-
-  state = {};
 
   toggleDrawer = (side, open) => () => {
     this.props.onClick(open);
   };
 
+  handleClick(openType) {
+    const key = `openCollapse${openType}`;
+    this.setState({
+      [key]: !this.state[key]
+    })
+  }
+
   render() {
-    const { classes,openStatus = false } = this.props;
+    const { classes, openStatus = false, femaleMenu = [], maleMenu = [] } = this.props;
+    console.log('props', this.props)
     const sideList = (
       <div className={classes.list}>
         <List>
-          {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button>
+            <ListItemIcon> <InboxIcon /> </ListItemIcon>
+            <ListItemText primary="广场" />
+          </ListItem>
+          <ListItem button>
+            <ListItemIcon> <InboxIcon /> </ListItemIcon>
+            <ListItemText primary="登陆" />
+          </ListItem>
         </List>
         <Divider />
         <List>
-          {['All mail', 'Trash', 'Spam'].map((text, index) => (
-            <ListItem button key={text}>
-              <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-              <ListItemText primary={text} />
-            </ListItem>
-          ))}
+          <ListItem button>
+            <ListItemIcon> <MailIcon /></ListItemIcon>
+            <ListItemText primary="书架" />
+          </ListItem>
+          <Divider />
+          <ListItem button>
+            <ListItemIcon> <AccountBox /></ListItemIcon>
+            <ListItemText primary="个人中心" />
+          </ListItem>
         </List>
       </div>
     );
@@ -65,8 +87,8 @@ class SwipeableTemporaryDrawer extends React.Component {
           <div
             tabIndex={0}
             role="button"
-            onClick={this.toggleDrawer('left', false)}
-            onKeyDown={this.toggleDrawer('left', false)}
+          // onClick={this.toggleDrawer('left', false)}
+          // onKeyDown={this.toggleDrawer('left', false)}
           >
             {sideList}
           </div>
@@ -74,6 +96,7 @@ class SwipeableTemporaryDrawer extends React.Component {
       </div>
     );
   }
+
 }
 
 SwipeableTemporaryDrawer.propTypes = {

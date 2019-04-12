@@ -82,14 +82,6 @@ export function getAuthorBook (author) {
   });
 }
 
-//阅读章节记录
-export function chapterRecor(data) {
-  return request({
-    url: `book/chapter/record`,
-    data,
-    method:'post'
-  });
-}
 
 //获取上一次阅读的位置（没有加入书架时）
 export function getLastRead(bookId) {

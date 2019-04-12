@@ -8,14 +8,14 @@ function getTimeStamp() {
       if (data) {
         let [session, expriseTime] = data.split('-');
         if (getTimeStamp > parseInt(expriseTime)) {
-          return false;
+          return '';
         } else {
           return session;
         }
       }
     }
   
-    return false;
+    return '';
   }
   
   export function setSession(session, expriseTime) {
