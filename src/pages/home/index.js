@@ -6,7 +6,6 @@ import './home.css';
 // import BottomNavigation from '../../component/BottomNavigation';
 import BookCard from '../../component/BookCard';
 
-
 class Home extends Component {
   constructor() {
     super();
